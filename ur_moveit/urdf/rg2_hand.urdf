@@ -1,0 +1,238 @@
+<?xml version="1.0" ?>
+<robot name="ur5e">  
+ 
+    <link name="hand_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_Hand_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_Hand_vis.STL" />
+                <material name="white">
+                    <color rgba="0.7058823529411765 0.7058823529411765 0.7058823529411765 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.061902 0.000129 -0.000005" />
+            <mass value="1.684558" />
+            <inertia ixx="0.000862" ixy="0.000000" ixz="0.000000" iyy="0.002401" iyz="-0.000001" izz="0.002620" />
+        </inertial>
+    </link>
+    <!-- Jari Kiri -->
+    <joint name="gripper_joint" type="revolute">
+        <parent link="hand_link" />
+        <child link="l_moment_arm_link" />
+        <origin rpy="0 0 0" xyz="0.105 0.017 0.010" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-0.45" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+   
+    <link name="l_moment_arm_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_LeftMomentArm_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_LeftMomentArm_vis.STL" />
+                <material name="gray1">
+                    <color rgba="0.47058823529411764 0.47058823529411764 0.47058823529411764 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.017004 0.006397 -0.010300" />
+            <mass value="0.160209" />
+            <inertia ixx="0.000023" ixy="0.000019" ixz="0.000000" iyy="0.000072" iyz="0.000000" izz="0.000083" />
+        </inertial>
+    </link>
+    <joint name="l_finger_2_joint" type="revolute">
+        <parent link="l_moment_arm_link" />
+        <child link="l_finger_link" />
+        <origin rpy="0 0 0" xyz="0.049 0.026 0.000" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-1.570796327" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <mimic joint="gripper_joint" multiplier="-1" />
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+   
+    <link name="l_finger_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_LeftFinger_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_LeftFinger_vis.STL" />
+                <material name="dark_gray">
+                    <color rgba="0.27450980392156865 0.27450980392156865 0.27450980392156865 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.024695 -0.010178 -0.010001" />
+            <mass value="0.081638" />
+            <inertia ixx="0.000006" ixy="-0.000005" ixz="0.000000" iyy="0.000025" iyz="0.000000" izz="0.000026" />
+        </inertial>
+    </link>
+    <joint name="l_finger_passive_joint" type="revolute">
+        <parent link="hand_link" />
+        <child link="l_truss_arm_link" />
+        <origin rpy="0 0 0" xyz="0.122 0.008 0.010" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-1.570796327" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <mimic joint="gripper_joint" multiplier="1" />
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+    
+    <link name="l_truss_arm_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_LeftTrussArm_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_LeftTrussArm_vis.STL" />
+                <material name="gray1">
+                    <color rgba="0.47058823529411764 0.47058823529411764 0.47058823529411764 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.023075 0.012136 -0.010000" />
+            <mass value="0.065927" />
+            <inertia ixx="0.000010" ixy="0.000010" ixz="0.000000" iyy="0.000024" iyz="0.000000" izz="0.000025" />
+        </inertial>
+    </link>
+    <!-- Jari Kanan -->
+    <joint name="r_finger_1_joint" type="revolute">
+        <parent link="hand_link" />
+        <child link="r_moment_arm_link" />
+        <origin rpy="0 0 0" xyz="0.105 -0.017 0.010" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-1.570796327" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <mimic joint="gripper_joint" multiplier="-1" />
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+    
+    <link name="r_moment_arm_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_RightMomentArm_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_RightMomentArm_vis.STL" />
+                <material name="gray1">
+                    <color rgba="0.47058823529411764 0.47058823529411764 0.47058823529411764 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.017004 -0.006397 -0.010300" />
+            <mass value="0.160209" />
+            <inertia ixx="0.000023" ixy="-0.000019" ixz="0.000000" iyy="0.000072" iyz="0.000000" izz="0.000083" />
+        </inertial>
+    </link>
+    <joint name="r_finger_2_joint" type="revolute">
+        <parent link="r_moment_arm_link" />
+        <child link="r_finger_link" />
+        <origin rpy="0 0 0" xyz="0.049 -0.026 0.000" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-1.570796327" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <mimic joint="gripper_joint" multiplier="1" />
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+   
+    <link name="r_finger_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_RightFinger_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_RightFinger_vis.STL" />
+                <material name="dark_gray">
+                    <color rgba="0.27450980392156865 0.27450980392156865 0.27450980392156865 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.024695 0.010178 -0.010000" />
+            <mass value="0.081637" />
+            <inertia ixx="0.000006" ixy="0.000005" ixz="0.000000" iyy="0.000025" iyz="0.000000" izz="0.000026" />
+        </inertial>
+    </link>
+    <joint name="r_finger_passive_joint" type="revolute">
+        <parent link="hand_link" />
+        <child link="r_truss_arm_link" />
+        <origin rpy="0 0 0" xyz="0.122 -0.008 0.010" />
+        <axis xyz="0 0 1" />
+        <limit effort="10.6" lower="-1.570796327" upper="1.570796327" velocity="3.14" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <mimic joint="gripper_joint" multiplier="-1" />
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+    
+    <link name="r_truss_arm_link">
+        <collision>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/collision/RG2_RightTrussArm_col.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.00 0.00 0.00" xyz="0.00 0.00 0.00" />
+            <geometry>
+                <mesh filename="package://ur_moveit/meshes/rg2/visual/RG2_RightTrussArm_vis.STL" />
+                <material name="gray1">
+                    <color rgba="0.47058823529411764 0.47058823529411764 0.47058823529411764 1.0" />
+                </material>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin rpy="0.00 0.00 0.00" xyz="0.023075 -0.012136 -0.010000" />
+            <mass value="0.065927" />
+            <inertia ixx="0.000010" ixy="-0.000010" ixz="0.000000" iyy="0.000024" iyz="0.000000" izz="0.000025" />
+        </inertial>
+    </link>
+    <joint name="hand_joint" type="fixed">
+        <origin rpy="1.57 -1.57 0" xyz="0 0 0" />
+        <parent link="tool0" />
+        <child link="hand_link" />
+    </joint>
+   
+</robot>
+
