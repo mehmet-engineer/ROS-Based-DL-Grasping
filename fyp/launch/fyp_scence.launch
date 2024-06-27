@@ -1,0 +1,48 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find gazebo_scene_manipulation)/worlds/grasp_test_ur5e.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+
+
+    <!-- Convert xacro and put on parameter server -->
+    <param name="camera_description" command="$(find xacro)/xacro $(find kinect_cam)/kinect.urdf.xacro" />
+    <!-- Spawn a robot into Gazebo -->
+    <node name="spawn_cam" pkg="gazebo_ros" type="spawn_model" 
+    args="-param camera_description -urdf -x 0 -y 0 -z 1.5 -P 1.57 -model camera" />
+    <node name="camera_tf" pkg="tf2_ros" type="static_transform_publisher" 
+    args="0 0 1.5 0 1.57 0 world camera" />
+
+    <param name="camera_scene_description" command="$(find xacro)/xacro $(find kinect_cam)/kinect_scene.urdf.xacro" />
+    <!-- Spawn a robot into Gazebo -->
+    <node name="spawn_cam_scene" pkg="gazebo_ros" type="spawn_model" 
+    args="-param camera_scene_description -urdf -x 2.25 -y -0.5 -z 1.75 -Y 3.14 -P 0.39 -model camera_scene" />
+    <!-- <node name="camera_tf" pkg="tf2_ros" type="static_transform_publisher" 
+    args="0 0 1.5 0 1.57 0 world camera" /> -->
+
+    <!-- <node name="obj_tf" pkg="tf2_ros" type="static_transform_publisher" 
+    args="0 0 0.686169 0 0 0 world obj" /> -->
+
+      <!-- Gazebo options -->
+    <arg name="gazebo_gui" default="true" doc="Start Gazebo GUI"/>
+    <arg name="paused" default="false" doc="Start Gazebo paused"/>
+    <arg name="world_name" default="worlds/empty.world" doc="Gazebo world file"/>
+    <arg name="world_pose" default="-x 0 -y 0 -z 0 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
+
+    <!-- Launch Gazebo and spawn the robot -->
+    <include file="$(dirname)/gazebo_ur5e.launch" pass_all_args="true"/>
+
+    <include file="$(find fyp)/launch/setup_robot_ur5e.launch" />
+
+
+
+    <!-- Run CV2 node -->
+    <!-- <node
+    pkg="grasp_gen"
+    type="grasp_server.py"
+    name="grasp_server"
+    output="screen"
+  /> -->
+
+</launch>

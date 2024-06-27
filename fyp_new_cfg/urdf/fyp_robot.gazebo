@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<robot name="fyp_robot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+ <gazebo>
+        <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+    <gazebo reference="base_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="Link1_1">
+        <material>Gazebo/Red</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="Link2_1">
+       <material>Gazebo/Red</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="Link3_1">
+        <material>Gazebo/Red</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="Link4_1">
+        <material>Gazebo/Red</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+
+    <gazebo reference="hand_link1">
+        <material>
+            Gazebo/SkyBlue
+        </material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="hand_link2">
+        <material>
+            Gazebo/SkyBlue
+        </material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="hand_grip1">
+        <material>
+            Gazebo/SkyBlue
+        </material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+    <gazebo reference="hand_grip2">
+        <material>
+            Gazebo/SkyBlue
+        </material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+
+
+<!-- mimic plugin -->
+
+<gazebo>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="hand_joint1mimic_joint_plugin">
+        <joint>gripper_joint</joint>
+        <mimicJoint>hand_joint1</mimicJoint>
+        <multiplier>1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.6</maxEffort>
+    </plugin>
+</gazebo>
+  
+<gazebo>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="hand_grip_joint1mimic_joint_plugin">
+        <joint>gripper_joint</joint>
+        <mimicJoint>hand_grip_joint1</mimicJoint>
+        <multiplier>-1.0</multiplier>
+        <offset>0</offset>
+        <sensitiveness>0.0</sensitiveness>
+        <maxEffort>10.6</maxEffort>
+    </plugin>
+</gazebo>
+
+<gazebo>
+        <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="hand_grip_joint2mimic_joint_plugin">
+            <joint>gripper_joint</joint>
+            <mimicJoint>hand_grip_joint2</mimicJoint>
+            <multiplier>-1.0</multiplier>
+            <offset>0</offset>
+            <sensitiveness>0.0</sensitiveness>
+            <maxEffort>10.6</maxEffort>
+        </plugin>
+    </gazebo>
+
+ <!-- Grasp fix -->
+
+ <gazebo>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+            <arm>
+            <arm_name>robot</arm_name>
+            <palm_link>grip_base_link</palm_link>
+            <gripper_link>hand_link1</gripper_link>
+            <gripper_link>hand_grip1</gripper_link>
+            <gripper_link>hand_link2</gripper_link>
+            <gripper_link>hand_grip2</gripper_link>
+            </arm>
+        <forces_angle_tolerance>90</forces_angle_tolerance>
+        <update_rate>10</update_rate>
+        <grip_count_threshold>2</grip_count_threshold>
+        <max_grip_count>5</max_grip_count>
+        <release_tolerance>0.0035</release_tolerance>
+        <disable_collisions_on_attach>false</disable_collisions_on_attach>
+        <contact_topic>__default_topic__</contact_topic>
+        </plugin>
+    </gazebo>
+
+</robot>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- MoveIt options -->
+  <arg name="pipeline" default="ompl" doc="Planning pipeline to use with MoveIt"/>
+
+  <!-- Launch MoveIt -->
+  <include file="$(dirname)/demo_moveit_ur5e.launch" pass_all_args="true">
+    <arg name="load_robot_description" value="false" />
+    <arg name="moveit_controller_manager" value="ros_control" />
+  </include>
+
+</launch>

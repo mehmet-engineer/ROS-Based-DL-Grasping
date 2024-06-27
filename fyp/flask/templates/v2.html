@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FYP</title>
+    <link href="{{ url_for('static', filename='/v2.css') }}" rel="stylesheet" />
+</head>
+<body>
+  <div>
+    <div class="home-container">
+      <div class="home-rowheader">
+        <span class="home-text">Final year project</span>
+      </div>
+      <div class="home-row1">
+        <div class="home-row1col1">
+          <form method="POST" class="home-form">
+            <div class="home-mode">
+              <h3 class="home-text01">Mode</h3>
+              <div class="home-auto">
+                <input type="radio" name="radio" />
+                <span>Auto</span>
+              </div>
+              <div class="home-manual">
+                <input type="radio" name="radio" />
+                <span>
+                  <span>Manual</span>
+                  <br />
+                </span>
+              </div>
+            </div>
+            <div class="home-btnstart">
+                <button type="submit" name="START" class="home-button1" value="start">
+                <span>
+                  <span>START</span>
+                  <br />
+                </span>
+              </button>
+            </div>
+
+            
+          </form>
+        </div>
+        <div class="home-row1col2">
+          <div class="home-container1">
+            <h3>STATUS</h3>
+            <div id="log" class="home-log">
+                {{logs| safe }}
+            </div>
+            
+          </div>
+        </div>
+        <div class="home-live">
+          <img
+            id="live"
+            alt="image"
+            src="{{ url_for('video_feed', feed='object') }}"
+            class="home-image"
+          />
+          <span>Objects</span>
+        </div>
+        <div class="home-live">
+          <img
+            id="live"
+            alt="image"
+            src="{{ url_for('video_feed', feed='scene') }}"
+            class="home-image"
+          />
+          <span>Scene</span>
+        </div>
+      </div>
+
+      <div class="home-space"></div>
+
+      <div class="home-row2">
+      
+        <div class="tab">
+          <button class="tablinks" onclick="openTab(event, 'grasp')">Grasp Detection</button>
+          <button class="tablinks" onclick="openTab(event, 'joint')">Joint Control</button>
+          <button class="tablinks" onclick="openTab(event, 'pose')">Set Pose</button>
+        </div>
+        <script>
+          function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "flex";
+            evt.currentTarget.className += " active";
+          }
+          </script>
+        
+        <div id="grasp" class="tabcontent">
+          <div class="home-rescol1">
+            <form method="POST">
+            <div class="home-grasp">
+              <h3>Grasps</h3>
+                  <div>
+                      <button type="submit" name="PREDICT" class="home-button1" value="predict">
+                        <span>
+                          <span>DETECT</span>
+                          <br />
+                        </span>
+                      </button>
+                      <button type="submit" name="RESET_GRASP" class="home-button1" value="reset_grasp">
+                        <span>
+                          <span>RESET</span>
+                          <br />
+                        </span>
+                      </button>
+                    </div>
+                  {% if grasp %}
+                  <select class="home-select" name="grasp_select">
+                    {% for idx in grasp %}
+                        <option value={{idx}}>grasp {{idx}}</option>
+                    {% endfor %}
+                  </select>
+                  <button type="submit" name="SELECT" class="home-button1" value="select">SELECT</button>
+                {% endif %}
+
+              </div>
+            </form>
+          </div>
+          <div class="home-rescol1">
+            <img
+              id="det_ori"
+              alt="image"
+              src="{{ url_for('detected', part='original') }}"
+              class="det-res"
+            />
+            <span>Original</span>
+            <img
+              id="det_depth"
+              alt="image"
+              src="{{ url_for('detected', part='depth') }}"
+              class="det-res"
+            />
+            <span>Depth</span>
+          </div>
+          <div class="home-rescol2">
+            <img
+              id="det_q"
+              alt="image"
+              src="{{ url_for('detected', part='q') }}"
+              class="det-res"
+            />
+            <span>Quality</span>
+            <img
+              id="det_angle"
+              alt="image"
+              src="{{ url_for('detected', part='angle') }}"
+              class="det-res"
+            />
+            <span>Angle</span>
+            <img
+              id="det_width"
+              alt="image"
+              src="{{ url_for('detected', part='width') }}"
+              class="det-res"
+            />
+            <span>Width</span>
+          </div>
+          <div class="home-rescol3">
+            <img
+              id="det_grasps"
+              alt="image"
+              src="{{ url_for('detected', part='grasps') }}"
+              class="home-grasps"
+            />
+            <span>Grasps</span>
+          </div>
+        </div>
+        
+        <div id="joint" class="tabcontent">
+          <div class="home-sliderscontainer">
+            <h3>Robot Joint</h3>
+            {% for i in range(len(joint)) %}                   
+            <div style="width: 100%;display: flex;gap: 15px;">
+              <span>Joint_{{i+1}}</span>
+              <input type="range" min="-180" max="180" value={{joint[i]}} class="slider" id="Joint_{{i+1}}_slider">
+              <span id="Joint_{{i+1}}_val" class="slider_val">{{joint[i]}}</span>
+            </div>
+            <script>
+              var slider{{i+1}} = document.getElementById("Joint_{{i+1}}_slider");
+              var output{{i+1}} = document.getElementById("Joint_{{i+1}}_val");
+              output{{i+1}}.innerHTML = slider{{i+1}}.value;
+              
+              slider{{i+1}}.oninput = function() {
+                output{{i+1}}.innerHTML = this.value;
+              }
+              </script>
+            {% endfor %}
+
+            <div style="width: 100%;display: flex;gap: 15px;justify-content: center;">
+              <button type="submit" name="SEND" class="home-button1" value="send_joint">SEND</button>
+              <button onclick="resetSlide(event)" type="submit" name="RESET" class="home-button1" value="reset">RESET</button>
+            </div>
+            <script>
+              function resetSlide(evt) {
+                var sliders;
+                sliders = document.getElementsByClassName("slider");
+                sliders_val = document.getElementsByClassName("slider_val");
+                for (i = 0; i < sliders.length; i++) {
+                  sliders[i].value = 0;
+                  sliders_val[i].innerHTML = 0;
+                }
+              }
+              </script>
+            
+            </div>
+        </div>
+
+        <div id="pose" class="tabcontent">
+          <div class="home-posecontainer">
+
+            <!-- <h3>Robot Name</h3>
+            <h2>{{robot_name}}</h2> -->
+
+            <h3>Robot Pose</h3>
+                  {% if pose %}
+                  <select class="home-select" name="grasp_select">
+                    {% for idx in range(len(pose)) %}
+                        <option value={{idx}}>{{pose[idx]}}</option>
+                    {% endfor %}
+                  </select>
+                  <form method="POST">
+                  <button type="submit" name="SELECT_POSE" class="home-button1" value="select_pose">SELECT</button>
+                </form>
+                {% endif %}
+
+            
+            
+            </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

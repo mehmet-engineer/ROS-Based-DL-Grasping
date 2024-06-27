@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FYP</title>
+    <style>
+      .home-container {
+      /* width: 100%; */
+      display: flex;
+      overflow: auto;
+      min-height: 100vh;
+      align-items: center;
+      padding-top: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      flex-direction: column;
+      padding-bottom: 20px;
+      justify-content: center;
+    }
+    .home-rowheader {
+      flex: 0 0 auto;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .home-text {
+      color: #35426d;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .home-row1 {
+      width: 100%;
+      gap: 10px;
+      height: auto;
+      display: flex;
+      align-self: center;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      justify-content: center;
+      background-color: #c2d9e9;
+      box-shadow: 5px 5px 10px 0px #3a3737;
+    }
+    .home-row1col1 {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-form {
+      gap: 10px;
+      width: 100%;
+      height: auto;
+      display: flex;
+      padding: 0px;
+      align-items: center;
+      margin-left: 10px;
+      padding-top: 10px;
+      margin-right: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+      padding-bottom: 10px;
+      justify-content: center;
+    }
+    .home-mode {
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-self: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-text01 {
+      align-self: flex-start;
+    }
+    .home-auto {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      justify-content: center;
+    }
+    .home-manual {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      justify-content: center;
+    }
+    .home-btnstart {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+      flex-direction: row;
+      padding-bottom: 10px;
+      justify-content: center;
+    }
+    .home-grasp {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: 200px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-select {
+      width: 100%;
+      height: 25px;
+    }
+    .home-button1 {
+      align-self: center;
+      box-shadow: 5px 5px 10px 0px #736f6f;
+    }
+    .home-row1col2 {
+      flex: 0 0 auto;
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-container1 {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-log {
+      flex: 0 0 auto;
+      width: 100%;
+      height: 200px;
+      display: flex;
+      overflow:auto;
+      align-items: flex-start;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      background-color: #fffdfd;
+    }
+    .home-live {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-image {
+      width: 480px;
+      height: 480px;
+      object-fit: cover;
+      box-shadow: 5px 5px 10px 0px #736f6f;
+    }
+    .home-row2 {
+      flex: 0 0 auto;
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-space {
+      flex: 0 0 auto;
+      width: 100%;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .home-rescol1 {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+    }
+    .det-res {
+      width: 240px;
+      height: 240px;
+      box-shadow: 5px 5px 10px 0px #736f6f;
+      object-fit: cover;
+    }
+  
+    .home-rescol2 {
+      gap: 10px;
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+    }
+    .home-rescol3 {
+      flex: 0 0 auto;
+      gap: 10px;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex-direction: column;
+    }
+    .home-grasps {
+      width: 480px;
+      height: 480px;
+      box-shadow: 5px 5px 10px 0px #736f6f;
+      object-fit: cover;
+    }
+
+  .home-result {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+    background-color: #c2d9e9;
+    box-shadow: 5px 5px 10px 0px #3a3737;
+  }
+  
+
+  body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #c2d9e9;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+  background-color: #c2d9e9;
+  box-shadow: 5px 5px 10px 0px #3a3737;
+}
+
+  .home-sliderscontainer {
+    gap: 10px;
+    flex: 0 0 auto;
+    width: 35%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    background: #f3f2f2;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .home-posecontainer {
+    gap: 10px;
+    flex: 0 0 auto;
+    width: 35%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+  }
+
+  
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="home-container">
+      <div class="home-rowheader">
+        <span class="home-text">Final year project</span>
+      </div>
+      <div class="home-row1">
+        <div class="home-row1col1">
+          <form method="POST" class="home-form">
+            <div class="home-mode">
+              <h3 class="home-text01">Mode</h3>
+              <div class="home-auto">
+                <input type="radio" name="radio" />
+                <span>Auto</span>
+              </div>
+              <div class="home-manual">
+                <input type="radio" name="radio" />
+                <span>
+                  <span>Manual</span>
+                  <br />
+                </span>
+              </div>
+            </div>
+            <div class="home-btnstart">
+                <button type="submit" name="START" class="home-button1" value="start">
+                <span>
+                  <span>START</span>
+                  <br />
+                </span>
+              </button>
+            </div>
+
+            
+          </form>
+        </div>
+        <div class="home-row1col2">
+          <div class="home-container1">
+            <h3>STATUS</h3>
+            <div id="log" class="home-log">
+                {{logs| safe }}
+            </div>
+            
+          </div>
+        </div>
+        <div class="home-live">
+          <img
+            id="live"
+            alt="image"
+            src="{{ url_for('video_feed', feed='object') }}"
+            class="home-image"
+          />
+          <span>Objects</span>
+        </div>
+        <div class="home-live">
+          <img
+            id="live"
+            alt="image"
+            src="{{ url_for('video_feed', feed='scene') }}"
+            class="home-image"
+          />
+          <span>Scene</span>
+        </div>
+      </div>
+
+      <div class="home-space"></div>
+
+      <div class="home-row2">
+      
+        <div class="tab">
+          <button class="tablinks" onclick="openTab(event, 'grasp')">Grasp Detection</button>
+          <button class="tablinks" onclick="openTab(event, 'joint')">Joint Control</button>
+          <button class="tablinks" onclick="openTab(event, 'pose')">Set Pose</button>
+        </div>
+        <script>
+          function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "flex";
+            evt.currentTarget.className += " active";
+          }
+          </script>
+        
+        <div id="grasp" class="tabcontent">
+          <div class="home-rescol1">
+            <form method="POST">
+            <div class="home-grasp">
+              <h3>Grasps</h3>
+                  <div>
+                      <button type="submit" name="PREDICT" class="home-button1" value="predict">
+                        <span>
+                          <span>DETECT</span>
+                          <br />
+                        </span>
+                      </button>
+                      <button type="submit" name="RESET_GRASP" class="home-button1" value="reset_grasp">
+                        <span>
+                          <span>RESET</span>
+                          <br />
+                        </span>
+                      </button>
+                    </div>
+                  {% if grasp %}
+                  <select class="home-select" name="grasp_select">
+                    {% for idx in grasp %}
+                        <option value={{idx}}>grasp {{idx}}</option>
+                    {% endfor %}
+                  </select>
+                  <button type="submit" name="SELECT" class="home-button1" value="select">SELECT</button>
+                {% endif %}
+
+              </div>
+            </form>
+          </div>
+          <div class="home-rescol1">
+            <img
+              id="det_ori"
+              alt="image"
+              src="{{ url_for('detected', part='original') }}"
+              class="det-res"
+            />
+            <span>Original</span>
+            <img
+              id="det_depth"
+              alt="image"
+              src="{{ url_for('detected', part='depth') }}"
+              class="det-res"
+            />
+            <span>Depth</span>
+          </div>
+          <div class="home-rescol2">
+            <img
+              id="det_q"
+              alt="image"
+              src="{{ url_for('detected', part='q') }}"
+              class="det-res"
+            />
+            <span>Quality</span>
+            <img
+              id="det_angle"
+              alt="image"
+              src="{{ url_for('detected', part='angle') }}"
+              class="det-res"
+            />
+            <span>Angle</span>
+            <img
+              id="det_width"
+              alt="image"
+              src="{{ url_for('detected', part='width') }}"
+              class="det-res"
+            />
+            <span>Width</span>
+          </div>
+          <div class="home-rescol3">
+            <img
+              id="det_grasps"
+              alt="image"
+              src="{{ url_for('detected', part='grasps') }}"
+              class="home-grasps"
+            />
+            <span>Grasps</span>
+          </div>
+        </div>
+        
+        <div id="joint" class="tabcontent">
+          <div class="home-sliderscontainer">
+            <h3>Robot Joint</h3>
+            <script>
+              const list = []
+
+              function resetSlide(evt) {
+                var sliders;
+                sliders = document.getElementsByClassName("slider");
+                sliders_val = document.getElementsByClassName("slider_val");
+                for (i = 0; i < sliders.length; i++) {
+                  sliders[i].value = list[i];
+                  sliders_val[i].innerHTML = list[i];
+                }
+              }
+            </script>
+            {% if joint %}
+            <form method="POST" class="home-form">
+            {% for i in range(joint|length) %}                   
+            <div style="width: 100%;display: flex;gap: 15px;">
+              <span>Joint_{{i+1}}</span>
+              <input type="range" min="-180" max="180" value={{joint[i]}} class="slider" id="Joint_{{i+1}}_slider" name="Joint_{{i+1}}">
+              <span id="Joint_{{i+1}}_val" class="slider_val">{{joint[i]}}</span>
+            </div>
+            <script>
+              var slider{{i+1}} = document.getElementById("Joint_{{i+1}}_slider");
+              var output{{i+1}} = document.getElementById("Joint_{{i+1}}_val");
+              output{{i+1}}.innerHTML = slider{{i+1}}.value;
+              
+              slider{{i+1}}.oninput = function() {
+                output{{i+1}}.innerHTML = this.value;
+              }
+
+              list.push({{joint[i]}})
+              </script>
+            {% endfor %}
+
+            <div style="width: 100%;display: flex;gap: 15px;justify-content: center; margin:10px">
+              <button type="submit" name="SEND" class="home-button1" value="send_joint">SEND</button>
+              <button onclick="resetSlide(event)" type="submit" name="RESET" class="home-button1" value="reset">RESET</button>
+            </div>
+          </form>
+            {% else %}
+            <span>Please Start the Robot</span>
+            {% endif %}
+            </div>
+        </div>
+
+        <div id="pose" class="tabcontent">
+          <div class="home-posecontainer">
+
+            <!-- <h3>Robot Name</h3>
+            <h2>{{robot_name}}</h2> -->
+
+            <h3>Robot Pose</h3>
+                  {% if pose %}
+                  <form method="POST" class="home-form">
+                  <select class="home-select" name="post_select">
+                    {% for idx in range(pose|length) %}
+                        <option value={{idx}}>{{pose[idx]}}</option>
+                    {% endfor %}
+                  </select>
+                  
+                  <button type="submit" name="SELECT_POSE" class="home-button1" value="select_pose">SELECT</button>
+                </form>
+                {% else %}
+                  <span>Please Start the Robot</span>
+                {% endif %}
+
+            
+            
+            </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
