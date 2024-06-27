@@ -1,0 +1,8 @@
+<launch>
+  <node
+    pkg="grasp_gen"
+    type="cam_run_monitor.py"
+    name="cam_run_monitor"
+    output="screen"
+  />
+</launch>

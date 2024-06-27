@@ -1,0 +1,8 @@
+<launch>
+  <node
+    pkg="grasp_gen"
+    type="cam_sub.py"
+    name="cam_sub"
+    output="screen"
+  />
+</launch>

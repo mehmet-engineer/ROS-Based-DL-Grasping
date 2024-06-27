@@ -1,0 +1,3 @@
+---
+sensor_msgs/CompressedImage img
+float32[] grasp

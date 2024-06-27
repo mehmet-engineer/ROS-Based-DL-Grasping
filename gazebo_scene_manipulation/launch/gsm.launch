@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<launch>
+	<arg name="models_dir" value="$(find gazebo_scene_manipulation)/models/" />
+	<!-- <arg name="models_dir" value="/home/$(optenv USER)/.gazebo/models/" /> -->
+	<!-- /home/nsrie/working/all_ros_ws/other/gazebo_models_worlds_collection/models -->
+    <node 
+    	name="gazebo_scene_manipulator" 
+    	pkg="gazebo_scene_manipulation" 
+    	type="gsm.py" 
+    	output="screen">
+    	<param name="models_dir" type="str" value="$(arg models_dir)"/>
+    </node>
+</launch>
